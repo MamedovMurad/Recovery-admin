@@ -86,21 +86,21 @@ useEffect(() => {
             {
               key: 'Haqqimizda',
               icon: <FormOutlined />,
-              label: 'About',
+              label: 'Haqqimizda',
               onClick:()=>navigate('/about'),
             },
    
             {
               key: 'service',
               icon: <FormOutlined />,
-              label: 'Service',
+              label: 'Xidmetler',
               onClick:()=>navigate('/service'),
             },
      
             {
               key: 'settings',
               icon: <FormOutlined />,
-              label: 'Settings',
+              label: 'Tenzimlemeler',
               onClick:()=>navigate('/settings'),
             },
         
