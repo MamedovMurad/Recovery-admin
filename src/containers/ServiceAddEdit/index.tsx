@@ -23,7 +23,7 @@ console.log(news,'test');
 
   const onFinish = async (values: any) => {
 
-    console.log(values.image, 'gfdsgsdfgsdfgdfsgdfsgfsd');
+   
 
     const formdata = new FormData
     formdata.append('image', values.image.file||values.image)
@@ -123,17 +123,17 @@ console.log(news,'test');
 
       <Form.Item label="Icon" name='icon' rules={[{ required: true }]}>
       
-        <Upload
-          defaultFileList={news && [{ uid: 'test_l', url: baseImageUrl + news?.icon, status: 'done', name: news?.title_az }]}
-          beforeUpload={beforeUpload}
-          listType="picture"
-          maxCount={1}
+      <Upload
+        defaultFileList={news && [{ uid: 'test_l', url: baseImageUrl + news?.icon, status: 'done', name: news?.title_az }]}
+        beforeUpload={beforeUpload}
+        listType="picture"
+        maxCount={1}
 
-        >
+      >
 
-          <Button icon={<UploadOutlined />}>Upload icon</Button>
-        </Upload>
-      </Form.Item>
+        <Button icon={<UploadOutlined />}>Upload icon</Button>
+      </Upload>
+    </Form.Item>
 
 
     </Form>

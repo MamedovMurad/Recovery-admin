@@ -6,11 +6,11 @@ import { AboutType, ContactType, NewsType, PartnerType, ProgressType, SettingsTy
 
 
 
-export const baseImageUrl = `http://159.253.23.205:7777/recovery.az/`;
+export const baseImageUrl = `https://honeybal.net/`;
 /* interface IAuth extends AxiosRequestConfig{
   Authorization: string
 } */
-axios.defaults.baseURL = "http://159.253.23.205:7777/recovery.az/api/";
+axios.defaults.baseURL = "https://honeybal.net/api";
 axios.interceptors.request.use((config:AxiosRequestConfig) => {
   const token = localStorage.getItem('agent')
   if (token ) config.headers = {...config.headers,Authorization:'Bearer '+token};

@@ -5,6 +5,7 @@ import {
   UserDeleteOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  AppstoreOutlined,
 } from '@ant-design/icons';
 import { Button, Col, Layout, Menu, Popconfirm, Row, Slider } from 'antd';
 import React, { useEffect, useState } from 'react';
@@ -48,49 +49,61 @@ useEffect(() => {
 
           items={[
             {
+              label:'Bas Sehife',
+              key:'homePage',
+              icon:<AppstoreOutlined/>,
+              children:[
+
+                {
+                  key: 'sliders',
+                  icon: <FormOutlined />,
+                  label: 'Sliders',
+                  onClick:()=>navigate('/sliders'),
+                  
+                },
+           
+                {
+                  key: 'news',
+                  icon: <FormOutlined />,
+                  label: 'News',
+                  onClick:()=>navigate('/news'),
+                },
+                {
+                  key: 'video',
+                  icon: <FormOutlined />,
+                  label: 'Video',
+                  onClick:()=>navigate('/video'),
+                },
+                {
+                  key: 'progress',
+                  icon: <FormOutlined />,
+                  label: 'progress',
+                  onClick:()=>navigate('/progress'),
+                },
+
+              ]
+            },
+            {
               key: 'about',
               icon: <FormOutlined />,
               label: 'About',
               onClick:()=>navigate('/about'),
             },
-            {
-              key: 'sliders',
-              icon: <FormOutlined />,
-              label: 'Sliders',
-              onClick:()=>navigate('/sliders'),
-              
-            },
-       
-            {
-              key: 'news',
-              icon: <FormOutlined />,
-              label: 'News',
-              onClick:()=>navigate('/news'),
-            },
+   
             {
               key: 'service',
               icon: <FormOutlined />,
               label: 'Service',
               onClick:()=>navigate('/service'),
             },
-            {
-              key: 'progress',
-              icon: <FormOutlined />,
-              label: 'progress',
-              onClick:()=>navigate('/progress'),
-            },
+     
             {
               key: 'settings',
               icon: <FormOutlined />,
               label: 'Settings',
               onClick:()=>navigate('/settings'),
             },
-            {
-              key: 'video',
-              icon: <FormOutlined />,
-              label: 'Video',
-              onClick:()=>navigate('/video'),
-            },
+        
           ]}
         />
       </Sider>

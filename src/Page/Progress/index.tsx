@@ -116,15 +116,12 @@ const Progress: React.FC = () => {
 
   const columns: ColumnsType<ProgressType> = [
     {
-      title: 'Image',
-      dataIndex: 'image',
-      key: 'image',
+      title: 'Icon',
+      dataIndex: 'icon',
+      key: 'icon',
       width: '30%',
       ...getColumnSearchProps('icon'),
-      render: (_: any, record: ProgressType) => <Image
-        width={90}
-        src={baseImageUrl + record.icon}
-      />
+   
 
     },
     {

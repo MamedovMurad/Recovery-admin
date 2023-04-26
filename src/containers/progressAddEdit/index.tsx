@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, message, Row, Upload } from "antd";
+import { Button, Col, Form, Input, message, Row, Select, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { RcFile } from "antd/lib/upload";
 import React, { useLayoutEffect, useState } from "react";
@@ -52,11 +52,11 @@ const ProgressAddEdit: React.FC<ProgressAddEditProps> = ({ progress, callback })
       ['title:az']: progress?.title_az,
       ['title:en']: progress?.title_en,
       ['title:ru']: progress?.title_ru,
+       ['icon']: progress?.icon,
 
    
 
 
-      icon: progress?.icon,
 
     });
   }, [progress]);
@@ -87,7 +87,7 @@ const ProgressAddEdit: React.FC<ProgressAddEditProps> = ({ progress, callback })
 
       <Row>
         <Col span={24}>
-          <Form.Item label="Icon (60x60)" name="icon" rules={[{ required: true }]}>
+        <Form.Item label="Icon (60x60)" name="icon" rules={[{ required: true }]}>
         <Upload
           defaultFileList={
             progress && [
