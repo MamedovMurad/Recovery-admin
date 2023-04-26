@@ -57,34 +57,34 @@ useEffect(() => {
                 {
                   key: 'sliders',
                   icon: <FormOutlined />,
-                  label: 'Sliders',
+                  label: 'Sliderler',
                   onClick:()=>navigate('/sliders'),
                   
                 },
            
                 {
-                  key: 'news',
+                  key: 'Xeberler',
                   icon: <FormOutlined />,
-                  label: 'News',
+                  label: 'Xeberler',
                   onClick:()=>navigate('/news'),
                 },
                 {
-                  key: 'video',
+                  key: 'Video',
                   icon: <FormOutlined />,
                   label: 'Video',
                   onClick:()=>navigate('/video'),
                 },
                 {
-                  key: 'progress',
+                  key: 'Is prosesimiz',
                   icon: <FormOutlined />,
-                  label: 'progress',
+                  label: 'Is prosesimiz',
                   onClick:()=>navigate('/progress'),
                 },
 
               ]
             },
             {
-              key: 'about',
+              key: 'Haqqimizda',
               icon: <FormOutlined />,
               label: 'About',
               onClick:()=>navigate('/about'),
