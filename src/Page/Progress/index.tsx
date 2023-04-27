@@ -183,6 +183,7 @@ const Progress: React.FC = () => {
   };
 
   const showModal = () => {
+    setProgress(null)
     setOpen(true);
   };
 

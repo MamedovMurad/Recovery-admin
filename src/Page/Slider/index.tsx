@@ -182,6 +182,7 @@ const Sliders: React.FC = () => {
   };
 
   const showModal = () => {
+    setslider(null)
     setOpen(true);
   };
 

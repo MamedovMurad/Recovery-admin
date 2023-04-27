@@ -195,6 +195,7 @@ const News: React.FC = () => {
     };
 
     const showModal = () => {
+        setslider(null)
         setOpen(true);
     };
 

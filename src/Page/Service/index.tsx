@@ -191,6 +191,7 @@ const Service: React.FC = () => {
     };
 
     const showModal = () => {
+        setslider(null)
         setOpen(true);
     };
 
