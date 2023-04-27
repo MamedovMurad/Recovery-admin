@@ -1,5 +1,5 @@
 import { ExclamationCircleOutlined, SearchOutlined } from '@ant-design/icons';
-
+import { render } from '@testing-library/react';
 import { Col, Image, InputRef, message, Modal, Row } from 'antd';
 import { Button, Input, Space, Table } from 'antd';
 import type { ColumnsType, ColumnType } from 'antd/es/table';
@@ -7,23 +7,23 @@ import type { FilterConfirmProps } from 'antd/es/table/interface';
 import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from "react-highlight-words";
 import agent, { baseImageUrl } from '../../App/Api';
-import { ProgressType } from '../../App/Model/types';
-
-import ProgressAddEdit from '../../containers/progressAddEdit';
-
-
-
-type DataIndex = keyof ProgressType;
+import { PriceType } from '../../App/Model/types';
+import SliderAddEdit from '../../containers/SliderAdd';
+import PriceAddEdit from '../../containers/priceAddEdit';
 
 
 
-const Progress: React.FC = () => {
+type DataIndex = keyof PriceType;
+
+
+
+const PriceList: React.FC = () => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
-  const [progresses, setProgresses] = useState<ProgressType[]>([])
+  const [sliders, setsliders] = useState<PriceType[]>([])
   const [open, setOpen] = useState(false);
-  const [progress, setProgress] = useState<ProgressType | null>(null)
+  const [slider, setslider] = useState<PriceType | null>(null)
 
   const handleSearch = (
     selectedKeys: string[],
@@ -40,7 +40,7 @@ const Progress: React.FC = () => {
     setSearchText('');
   };
 
-  const getColumnSearchProps = (dataIndex: DataIndex): ColumnType<ProgressType> => ({
+  const getColumnSearchProps = (dataIndex: DataIndex): ColumnType<PriceType> => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div style={{ padding: 8 }}>
         <Input
@@ -109,24 +109,13 @@ const Progress: React.FC = () => {
   });
 
 
-  function updateSlider(item: ProgressType) {
+  function updateSlider(item: PriceType) {
     setOpen(true);
-    setProgress(item)
+    setslider(item)
   }
 
-  const columns: ColumnsType<ProgressType> = [
-    {
-      title: 'Image',
-      dataIndex: 'image',
-      key: 'image',
-      width: '30%',
-      ...getColumnSearchProps('icon'),
-      render: (_: any, record: ProgressType) => <Image
-        width={90}
-        src={baseImageUrl + record.icon}
-      />
+  const columns: ColumnsType<any> = [
 
-    },
     {
       title: 'Title',
       dataIndex: 'title_az',
@@ -136,10 +125,18 @@ const Progress: React.FC = () => {
       sortDirections: ['descend', 'ascend'],
     },
     {
+      title: 'Price',
+      dataIndex: 'price',
+      key: 'price',
+      ...getColumnSearchProps('price'),
+      sorter: (a, b) => a.title_az.length - b.title_az.length,
+      sortDirections: ['descend', 'ascend'],
+    },
+    {
       title: 'Actions',
       dataIndex: 'action',
       key: 'action',
-      render: (_: any, record: ProgressType) => {
+      render: (_: any, record: PriceType) => {
         return (
           <>
             <Space size={'middle'}>
@@ -152,16 +149,16 @@ const Progress: React.FC = () => {
     }
   ];
 
-  async function fethcProgress() {
-    const res = await agent.progress.list()
-    !res.error && setProgresses(res.data)
+  async function fethcSlider() {
+    const res = await agent.price.list()
+    !res.error && setsliders(res.data)
     handleOk()
   }
 
-  async function deleteProgress(id: number) {
-    const res = await agent.progress.delete(id)
-    res.data && message.success('progress was deleted')
-    fethcProgress()
+  async function deleteSlider(id: number) {
+    const res = await agent.price.delete(id)
+    res.data && message.success('slider was deleted')
+    fethcSlider()
   }
 
   const showDeleteConfirm = (id: number) => {
@@ -174,7 +171,7 @@ const Progress: React.FC = () => {
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        deleteProgress(id)
+        deleteSlider(id)
       },
       onCancel() {
         /*  setDelId(null) */
@@ -183,6 +180,7 @@ const Progress: React.FC = () => {
   };
 
   const showModal = () => {
+    setslider(null)
     setOpen(true);
   };
 
@@ -197,11 +195,11 @@ const Progress: React.FC = () => {
   const handleCancel = () => {
     console.log('Clicked cancel button');
     setOpen(false);
-    setProgress(null)
+    setslider(null)
   };
 
   useEffect(() => {
-    fethcProgress()
+    fethcSlider()
   }, [])
 
   return <>
@@ -215,9 +213,9 @@ const Progress: React.FC = () => {
       </Col>
     </Row>
 
-    <Table columns={columns} dataSource={progresses} />
+    <Table columns={columns} dataSource={sliders} />
     <Modal
-      width={700}
+      width={800}
       title="Slider Add"
       open={open}
       onOk={handleOk}
@@ -226,16 +224,16 @@ const Progress: React.FC = () => {
       footer={[
         <>
           <Button onClick={handleCancel} >Cancel</Button>
-          <Button type="primary" form='AddProgress' htmlType='submit' >Ok</Button></>
+          <Button type="primary" form='AddSLider' htmlType='submit' >Ok</Button></>
 
 
       ]}
     >
-      <ProgressAddEdit progress={progress || undefined} callback={fethcProgress} />
+      <PriceAddEdit slider={slider || undefined} callback={fethcSlider} />
     </Modal>
   </>
 
     ;
 };
 
-export default Progress;
+export default PriceList;

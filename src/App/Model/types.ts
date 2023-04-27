@@ -22,6 +22,15 @@ export type YoutubeLinkType = {
     image:string,
     link:string 
 }
+export type PriceType = {
+    title_az:string;
+    title_en:string
+    title_ru:string;
+    id:number,
+    price:string ,
+    service_id:number,
+    service_title:string
+}
 export type ProgressType = {
     title_az:string;
     title_en:string

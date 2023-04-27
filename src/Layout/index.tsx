@@ -20,6 +20,7 @@ import Service from '../Page/Service';
 import Settings from '../Page/Settings';
 import Progress from '../Page/Progress';
 import VIdeoPage from '../Page/video';
+import PriceList from '../Page/price-list';
 const { Header, Sider, Content } = Layout;
 
 const Layouts: React.FC = () => {
@@ -96,6 +97,12 @@ useEffect(() => {
               label: 'Xidmetler',
               onClick:()=>navigate('/service'),
             },
+            {
+              key: 'pricelist',
+              icon: <FormOutlined />,
+              label: 'Qiymetler',
+              onClick:()=>navigate('/price-list'),
+            },
      
             {
               key: 'settings',
@@ -103,6 +110,8 @@ useEffect(() => {
               label: 'Tenzimlemeler',
               onClick:()=>navigate('/settings'),
             },
+
+          
         
           ]}
         />
@@ -144,6 +153,7 @@ useEffect(() => {
             <Route path="/settings" element={<Settings/>}/>
             <Route path="/progress" element={<Progress/>}/>
             <Route path="/video" element={<VIdeoPage/>}/>
+            <Route path="/price-list" element={<PriceList/>}/>
             </Routes>
         </Content>
       </Layout>

@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosResponse ,AxiosRequestConfig} from "axios";
 
 import { GenericReponse } from "../Model/GenericResponse";
 import { LoginModel } from "../Model/Login";
-import { AboutType, ContactType, NewsType, PartnerType, ProgressType, SettingsType, SliderType, YoutubeLinkType } from "../Model/types";
+import { AboutType, ContactType, NewsType, PartnerType, PriceType, ProgressType, SettingsType, SliderType, YoutubeLinkType } from "../Model/types";
 
 
 
@@ -135,6 +135,14 @@ axios.interceptors.request.use((config:AxiosRequestConfig) => {
   
   }
 
+  const price = {
+    list:()=>requests.get<GenericReponse<PriceType[]>>('/price'),
+    add:(body:any)=>requests.post<GenericReponse<boolean>>('/price/store',body),
+    update:(body:any,link:number)=>requests.post<GenericReponse<boolean>>('/price/update/'+link,body),
+    delete:(id:number)=>requests.del<GenericReponse<true>>('delete/price/'+id)
+  }
+
+
     const agent = {
       Login,
       slider,
@@ -148,6 +156,7 @@ axios.interceptors.request.use((config:AxiosRequestConfig) => {
       contact,
       cover,
       progress,
-      youtubeLink
+      youtubeLink,
+      price,
     }
   export default agent;
