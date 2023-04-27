@@ -216,7 +216,7 @@ const PriceList: React.FC = () => {
     <Table columns={columns} dataSource={sliders} />
     <Modal
       width={800}
-      title="Slider Add"
+      title="Price Add"
       open={open}
       onOk={handleOk}
 
