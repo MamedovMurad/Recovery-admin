@@ -44,7 +44,7 @@ export type AboutType = {
     title_en:string,
     title_ru:string,
 
-    description_az:string,
+    description_az:any,
     description_en:string,
     description_ru:string,
     image:string,

@@ -5,6 +5,8 @@ import agent, { baseImageUrl } from "../../App/Api";
 import { AboutType } from "../../App/Model/types";
 import AboutContainer from "../../containers/about";
 import "./index.css";
+
+
 type AboutProps = {};
 
 const About: React.FC<AboutProps> = () => {
@@ -58,7 +60,7 @@ const About: React.FC<AboutProps> = () => {
             />
           }
         >
-          <p>{aboutData?.description_az}</p>
+          <p dangerouslySetInnerHTML={ { __html: aboutData?.description_az } }></p>
         </Card>
       </div>
 
@@ -83,7 +85,7 @@ const About: React.FC<AboutProps> = () => {
           </>,
         ]}
       >
-        <AboutContainer about={aboutData || undefined} callback={fetchApi} />
+        {aboutData &&<AboutContainer about={aboutData} callback={fetchApi} />}
       </Modal>
     </>
   );
