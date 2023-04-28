@@ -52,13 +52,7 @@ const About: React.FC<AboutProps> = () => {
       <div className="site-card-border-less-wrapper">
         <Card
           title={aboutData?.title_az}
-          cover={
-            <img
-            alt={aboutData?.title_az}
-              src={baseImageUrl + aboutData?.image}
-              style={{ width: "300px", paddingTop: "20px" }}
-            />
-          }
+     
         >
           <p dangerouslySetInnerHTML={ { __html: aboutData?.description_az } }></p>
         </Card>

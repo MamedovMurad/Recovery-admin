@@ -35,7 +35,7 @@ const AboutContainer: React.FC<AboutContainerProps> = ({ about, callback }) => {
         const formdata = new FormData
         
         
-        formdata.append('image', values.image.file || values.image)
+    
         formdata.append('title:az', values.title_az)
         formdata.append('title:en', values.title_en)
         formdata.append('title:ru', values.title_ru)
@@ -57,7 +57,7 @@ const AboutContainer: React.FC<AboutContainerProps> = ({ about, callback }) => {
             description_az: about?.description_az,
             description_ru: about?.description_ru,
             description_en: about?.description_en,
-            image: about?.image
+        
         });
     }, [about])
 
@@ -123,16 +123,7 @@ const AboutContainer: React.FC<AboutContainerProps> = ({ about, callback }) => {
                     />
                 </Form.Item>
 
-                <Form.Item label="Image (561x313)" name='image' rules={[{ required: true }]}>
-                    <Upload
-                        defaultFileList={about && [{ uid: 'test', url: baseImageUrl + about?.image, status: 'done', name: about?.title_az }]}
-                        beforeUpload={beforeUpload}
-                        listType="picture"
-                        maxCount={1}
-                    >
-                        <Button icon={<UploadOutlined />}>Upload image</Button>
-                    </Upload>
-                </Form.Item>
+              
             </Form>
         </div>
     );
