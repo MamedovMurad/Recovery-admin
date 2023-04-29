@@ -82,8 +82,11 @@ export type SettingsType = {
 export type ContactType = {
     id: number,
     email: string,
-    address: string,
-    phone: string,
+    addressaz: string,
+    addressen: string,
+    addressru: string,
+    phone_1: string,
+    phone_2: string,
     created_at: Date,
     updated_at: Date
 }

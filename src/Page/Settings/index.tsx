@@ -13,22 +13,22 @@ const Settings:React.FC<SettingsProps> = () => {
 
     async function fetchapi() {
         setloading(true)
-        const res = await agent.setting.get()
+       
         const res2 =  await agent.contact.get()
         setloading(false)
-       if (res.data&&res2.data) {
-        form.setFieldsValue({...res.data[0],...res2.data[0]});
-       }  
+    
+        form.setFieldsValue(res2.data);
+       
         
                
     }
     async function onFinish(params:SettingsType) {
-        const res = await agent.setting.update(params)
+       
         const res2 = await agent.contact.update(params)
-        if (res.data&&res2.data) {
+       
             message.success('Settings was updated')
            /*  fetchapi() */
-        }
+        
     }
 
 
@@ -51,9 +51,7 @@ const Settings:React.FC<SettingsProps> = () => {
     colon={false}
     form={form}
   >
-    <Form.Item label="Twitter" name="twitter" rules={[{ required: true }]}>
-      <Input />
-    </Form.Item>
+  
 
     <Form.Item label="Instagram" name="instagram" rules={[{ required: true }]}>
       <Input />
@@ -62,17 +60,24 @@ const Settings:React.FC<SettingsProps> = () => {
     <Form.Item label="Facebook" name="facebook" rules={[{ required: true }]}>
       <Input />
     </Form.Item>
-
-    <Form.Item label="Youtube" name="youtube" rules={[{ required: true }]}>
+ 
+    <Form.Item label="Email" name="mail" rules={[{ required: true }]}>
       <Input />
     </Form.Item>
-    <Form.Item label="Email" name="email" rules={[{ required: true }]}>
+    <Form.Item label="Phone_1" name="phone_1" rules={[{ required: true }]}>
       <Input />
     </Form.Item>
-    <Form.Item label="Phone" name="phone" rules={[{ required: true }]}>
+    <Form.Item label="Phone_2" name="phone_2" rules={[{ required: true }]}>
       <Input />
     </Form.Item>
-    <Form.Item label="address" name="address" rules={[{ required: true }]}>
+    
+    <Form.Item label="address:Az" name="addressaz" rules={[{ required: true }]}>
+      <Input />
+    </Form.Item>
+    <Form.Item label="address:En" name="addressen" rules={[{ required: true }]}>
+      <Input />
+    </Form.Item>
+    <Form.Item label="address:Ru" name="addressru" rules={[{ required: true }]}>
       <Input />
     </Form.Item>
     <Form.Item label=" ">
