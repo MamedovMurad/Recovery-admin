@@ -11,6 +11,7 @@ declare module '@ckeditor/ckeditor5-react' {
       onChange?: (event: any, editor: Editor) => void;
       onBlur?: (event: any, editor: Editor) => void;
       onFocus?: (event: any, editor: Editor) => void;
+      onReady?:(event:any)=>void
     }
   
     class CKEditor extends React.Component<CKEditorProps> {}

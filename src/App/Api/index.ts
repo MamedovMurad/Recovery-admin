@@ -142,6 +142,7 @@ axios.interceptors.request.use((config:AxiosRequestConfig) => {
     delete:(id:number)=>requests.del<GenericReponse<true>>('delete/price/'+id)
   }
 
+  const fileservice = (body:any)=>requests.post<{fileName:string,uploaded:number,url:string}>('/ckeditor/upload',body)
 
     const agent = {
       Login,
@@ -158,5 +159,6 @@ axios.interceptors.request.use((config:AxiosRequestConfig) => {
       progress,
       youtubeLink,
       price,
+      fileservice
     }
   export default agent;

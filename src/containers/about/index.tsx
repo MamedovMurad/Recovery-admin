@@ -61,6 +61,41 @@ const AboutContainer: React.FC<AboutContainerProps> = ({ about, callback }) => {
         });
     }, [about])
 
+
+
+
+    function uploadPlugin(editor:any) {
+        editor.plugins.get("FileRepository").createUploadAdapter = (loader:any) => {
+          return uploadAdapter(loader);
+        };
+      }
+      
+    
+      function uploadAdapter(loader:any) {
+        return {
+          upload: () => {
+            return new Promise((resolve, reject) => {
+              const body = new FormData();
+              loader.file.then((file:any) => {
+                body.append("upload", file);
+                // let headers = new Headers();
+                // headers.append("Origin", "http://localhost:3000");
+               agent.fileservice(body).then((res) => {
+                    resolve({
+                      default: `${baseImageUrl}public/uploads/${res.fileName}`
+                    });
+                  })
+                  .catch((err) => {
+                    reject(err);
+                  });
+              });
+            });
+          }
+        };
+      }
+
+
+
     return (
         <div>
             <Form
@@ -97,7 +132,9 @@ const AboutContainer: React.FC<AboutContainerProps> = ({ about, callback }) => {
                     <CKEditor
                         editor={ClassicEditor}
                         data={about?.description_az}
-                     
+                        config={{
+                            extraPlugins: [uploadPlugin]
+                          }}
                     />
                 </Form.Item>
                 <Form.Item label="description:en" name='description_en' rules={[{ required: true }]}
@@ -108,7 +145,9 @@ const AboutContainer: React.FC<AboutContainerProps> = ({ about, callback }) => {
                     <CKEditor
                         editor={ClassicEditor}
                         data={about?.description_en}
-                     
+                       config={{
+                          extraPlugins: [uploadPlugin]
+                        }}
                     />
                 </Form.Item>
                 <Form.Item label="description:ru" name='description_ru' rules={[{ required: true }]}
@@ -119,7 +158,9 @@ const AboutContainer: React.FC<AboutContainerProps> = ({ about, callback }) => {
                    <CKEditor
                         editor={ClassicEditor}
                         data={about?.description_ru}
-                     
+                        config={{
+                            extraPlugins: [uploadPlugin]
+                          }}
                     />
                 </Form.Item>
 
