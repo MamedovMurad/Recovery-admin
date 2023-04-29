@@ -5,6 +5,9 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import agent, { baseImageUrl } from "../../App/Api";
 import { NewsType } from "../../App/Model/types";
 import type { FormInstance } from 'antd/es/form';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { uploadPlugin } from "../../hooks/file";
 type ServiceAddEditProps = {
   news?: NewsType&{icon:string}
   callback: any,
@@ -26,7 +29,7 @@ console.log(news,'test');
    
 
     const formdata = new FormData
-    formdata.append('image', values.image.file||values.image)
+
     formdata.append('icon', values.icon.file||values.icon)
     formdata.append('title:az', values.title_az)
     formdata.append('title:en', values.title_en)
@@ -62,7 +65,7 @@ console.log(news,'test');
       description_az: news?.description_az,
       description_en: news?.description_en,
       description_ru: news?.description_ru,
-      image: news?.image,
+   
       icon: news?.icon,
    
     });
@@ -95,30 +98,48 @@ console.log(news,'test');
         <Input placeholder="input placeholder" />
       </Form.Item>
 
-      <Form.Item label="Description:az" name='description_az' rules={[{ required: true }]}>
-      <Input.TextArea placeholder="description" />
-      </Form.Item>
-      <Form.Item label="Description:en" name='description_en' rules={[{ required: true }]}>
-      <Input.TextArea placeholder="description" />
-      </Form.Item>
-      <Form.Item label="Description:ru" name='description_ru' rules={[{ required: true }]}>
-      <Input.TextArea placeholder="description" />
-      </Form.Item>
+      <Form.Item label="description:az" name='description_az' rules={[{ required: true }]}
+                   getValueFromEvent={(event, editor) => {
+                    const data = editor.getData();
+                    return data;
+                    }} >
+                   <CKEditor
+                        editor={ClassicEditor}
+                        data={news?.description_az}
+                        config={{
+                            extraPlugins: [uploadPlugin]
+                          }}
+                    />
+                </Form.Item>
+      <Form.Item label="description:en" name='description_en' rules={[{ required: true }]}
+                   getValueFromEvent={(event, editor) => {
+                    const data = editor.getData();
+                    return data;
+                    }} >
+                   <CKEditor
+                        editor={ClassicEditor}
+                        data={news?.description_en}
+                        config={{
+                            extraPlugins: [uploadPlugin]
+                          }}
+                    />
+                </Form.Item>
+      <Form.Item label="description:ru" name='description_ru' rules={[{ required: true }]}
+                   getValueFromEvent={(event, editor) => {
+                    const data = editor.getData();
+                    return data;
+                    }} >
+                   <CKEditor
+                        editor={ClassicEditor}
+                        data={news?.description_ru}
+                        config={{
+                            extraPlugins: [uploadPlugin]
+                          }}
+                    />
+                </Form.Item>
 
    
-      <Form.Item label="Image" name='image' rules={[{ required: true }]}>
-      
-        <Upload
-          defaultFileList={news && [{ uid: 'test', url: baseImageUrl + news?.image, status: 'done', name: news?.title_az }]}
-          beforeUpload={beforeUpload}
-          listType="picture"
-          maxCount={1}
-
-        >
-
-          <Button icon={<UploadOutlined />}>Upload image</Button>
-        </Upload>
-      </Form.Item>
+   
 
 
       <Form.Item label="Icon" name='icon' rules={[{ required: true }]}>
