@@ -5,6 +5,9 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import agent, { baseImageUrl } from "../../App/Api";
 import { NewsType } from "../../App/Model/types";
 import type { FormInstance } from 'antd/es/form';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { uploadPlugin } from "../../hooks/file";
 type NewsAddEditProps = {
   news?: NewsType
   callback: any,
@@ -92,15 +95,45 @@ const NewsAddEdit: React.FC<NewsAddEditProps> = ({ news, callback, categoryNews 
         <Input placeholder="input placeholder" />
       </Form.Item>
 
-      <Form.Item label="Description:az" name='description_az' rules={[{ required: true }]}>
-        <Input.TextArea placeholder="description" />
-      </Form.Item>
-      <Form.Item label="Description:en" name='description_en' rules={[{ required: true }]}>
-        <Input.TextArea placeholder="description" />
-      </Form.Item>
-      <Form.Item label="Description:ru" name='description_ru' rules={[{ required: true }]}>
-        <Input.TextArea placeholder="description" />
-      </Form.Item>
+      <Form.Item label="description:az" name='description_az' rules={[{ required: true }]}
+                   getValueFromEvent={(event, editor) => {
+                    const data = editor.getData();
+                    return data;
+                    }} >
+                   <CKEditor
+                        editor={ClassicEditor}
+                        data={news?.description_az}
+                        config={{
+                            extraPlugins: [uploadPlugin]
+                          }}
+                    />
+                </Form.Item>
+      <Form.Item label="description:en" name='description_en' rules={[{ required: true }]}
+                   getValueFromEvent={(event, editor) => {
+                    const data = editor.getData();
+                    return data;
+                    }} >
+                   <CKEditor
+                        editor={ClassicEditor}
+                        data={news?.description_en}
+                        config={{
+                            extraPlugins: [uploadPlugin]
+                          }}
+                    />
+                </Form.Item>
+      <Form.Item label="description:ru" name='description_ru' rules={[{ required: true }]}
+                   getValueFromEvent={(event, editor) => {
+                    const data = editor.getData();
+                    return data;
+                    }} >
+                   <CKEditor
+                        editor={ClassicEditor}
+                        data={news?.description_ru}
+                        config={{
+                            extraPlugins: [uploadPlugin]
+                          }}
+                    />
+                </Form.Item>
 
 
       <Form.Item label="Category" name='category_id' rules={[{ required: true }]}>
@@ -124,20 +157,20 @@ const NewsAddEdit: React.FC<NewsAddEditProps> = ({ news, callback, categoryNews 
 
         </Select>
       </Form.Item>
+   
       <Form.Item label="Image (800x500)" name='image' rules={[{ required: true }]}>
 
-        <Upload
-          defaultFileList={news && [{ uid: 'test', url: baseImageUrl + news?.image, status: 'done', name: news?.title_az }]}
-          beforeUpload={beforeUpload}
-          listType="picture"
-          maxCount={1}
+<Upload
+  defaultFileList={news && [{ uid: 'test', url: baseImageUrl + news?.image, status: 'done', name: news?.title_az }]}
+  beforeUpload={beforeUpload}
+  listType="picture"
+  maxCount={1}
 
-        >
+>
 
-          <Button icon={<UploadOutlined />}>Upload image</Button>
-        </Upload>
-      </Form.Item>
-
+  <Button icon={<UploadOutlined />}>Upload image</Button>
+</Upload>
+</Form.Item>
     </Form>
   );
 }
