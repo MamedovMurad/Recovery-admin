@@ -121,7 +121,7 @@ axios.interceptors.request.use((config:AxiosRequestConfig) => {
     update:(body:SettingsType)=>requests.post<GenericReponse<SettingsType>>('/setting/update/1', body)
   }
   const contact = {
-    get:()=>requests.get<GenericReponse<ContactType[]>>('/contact'),
+    get:()=>requests.get<GenericReponse<ContactType>>('/contact'),
     update:(body:SettingsType)=>requests.post<GenericReponse<ContactType>>('/contact/update/1', body)
   }
   const cover ={

@@ -16,8 +16,9 @@ const Settings:React.FC<SettingsProps> = () => {
        
         const res2 =  await agent.contact.get()
         setloading(false)
-    
-        form.setFieldsValue(res2.data);
+      const data = {...res2.data, 'address:az':res2.data.addressaz, 'address:ru':res2.data.addressru, 'address:en':res2.data.addressen};
+        
+        form.setFieldsValue(data);
        
         
                
@@ -71,13 +72,13 @@ const Settings:React.FC<SettingsProps> = () => {
       <Input />
     </Form.Item>
     
-    <Form.Item label="address:Az" name="addressaz" rules={[{ required: true }]}>
+    <Form.Item label="address:Az" name="address:az" rules={[{ required: true }]}>
       <Input />
     </Form.Item>
-    <Form.Item label="address:En" name="addressen" rules={[{ required: true }]}>
+    <Form.Item label="address:En" name="address:en" rules={[{ required: true }]}>
       <Input />
     </Form.Item>
-    <Form.Item label="address:Ru" name="addressru" rules={[{ required: true }]}>
+    <Form.Item label="address:Ru" name="address:ru" rules={[{ required: true }]}>
       <Input />
     </Form.Item>
     <Form.Item label=" ">
