@@ -141,6 +141,10 @@ axios.interceptors.request.use((config:AxiosRequestConfig) => {
     update:(body:any,link:number)=>requests.post<GenericReponse<boolean>>('/price/update/'+link,body),
     delete:(id:number)=>requests.del<GenericReponse<true>>('delete/price/'+id)
   }
+  const page = {
+    get :()=>requests.get<GenericReponse<AboutType>>('/page'),
+    update:(body:any)=>requests.post<GenericReponse<boolean>>('/page/update/',body),
+  }
 
   const fileservice = (body:any)=>requests.post<{fileName:string,uploaded:number,url:string}>('/ckeditor/upload',body)
 
@@ -159,6 +163,7 @@ axios.interceptors.request.use((config:AxiosRequestConfig) => {
       progress,
       youtubeLink,
       price,
-      fileservice
+      fileservice,
+      page
     }
   export default agent;

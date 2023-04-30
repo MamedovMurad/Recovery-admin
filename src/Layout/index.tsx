@@ -21,6 +21,7 @@ import Settings from '../Page/Settings';
 import Progress from '../Page/Progress';
 import VIdeoPage from '../Page/video';
 import PriceList from '../Page/price-list';
+import Info from '../Page/info';
 const { Header, Sider, Content } = Layout;
 
 const Layouts: React.FC = () => {
@@ -103,6 +104,12 @@ useEffect(() => {
               label: 'Qiymetler',
               onClick:()=>navigate('/price-list'),
             },
+            {
+              key: 'info',
+              icon: <FormOutlined />,
+              label: 'Melumatlar',
+              onClick:()=>navigate('/info'),
+            },
      
             {
               key: 'settings',
@@ -110,6 +117,7 @@ useEffect(() => {
               label: 'Tenzimlemeler',
               onClick:()=>navigate('/settings'),
             },
+           
 
           
         
@@ -154,6 +162,7 @@ useEffect(() => {
             <Route path="/progress" element={<Progress/>}/>
             <Route path="/video" element={<VIdeoPage/>}/>
             <Route path="/price-list" element={<PriceList/>}/>
+            <Route path="/info" element={<Info/>}/>
             </Routes>
         </Content>
       </Layout>
