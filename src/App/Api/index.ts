@@ -143,7 +143,7 @@ axios.interceptors.request.use((config:AxiosRequestConfig) => {
   }
   const page = {
     get :()=>requests.get<GenericReponse<AboutType>>('/page'),
-    update:(body:any)=>requests.post<GenericReponse<boolean>>('/page/update/',body),
+    update:(body:any)=>requests.post<GenericReponse<boolean>>('/page/update',body),
   }
 
   const fileservice = (body:any)=>requests.post<{fileName:string,uploaded:number,url:string}>('/ckeditor/upload',body)
